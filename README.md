@@ -6,7 +6,7 @@ Running the 'make' command will create the files IRCServer and IRCClient.
 
 When IRCServer is executed, it will accept a number of commands through network connections and send back responses to the client. The server will process only one request at one time.
 
-The server can be started with the command 'IRCServer \<port\>' where \<port\> is a designated available network port on the machine.  It can be ended by typing ctrl+c.
+The server can be started with the command `IRCServer \<port\>` where \<port\> is a designated available network port on the machine.  It can be ended by typing ctrl+c.
 
 ###Commands
 
@@ -53,4 +53,4 @@ The server can accept the following commands:
    ```
 
 ##IRC Client   
-  IRCClient can be run with the usage 'IRCClient \<host\> \<port\>', where \<host\> is the machine the server is running from, and \<port\> is the port used by the server. It provides a graphical interface for the IRC server using GTK 2.0. 
+  IRCClient can be run with the usage `IRCClient \<host\> \<port\>`, where \<host\> is the machine the server is running from, and \<port\> is the port used by the server. It provides a graphical interface for the IRC server using GTK 2.0. 
