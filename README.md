@@ -1,6 +1,6 @@
 #IRC Client/Server
 
-Running the 'make' command will create the files IRCServer and IRCClient.
+Running the `make` command will create the files `IRCServer` and `IRCClient`.
 
 ##IRC Server
 
@@ -55,4 +55,4 @@ The server can accept the following commands:
    ```
 
 ##IRC Client   
-  IRCClient can be run with the usage `IRCClient <host> <port>`, where `host` is the machine the server is running from, and \<port\> is the port used by the server. It provides a graphical interface for the IRC server using GTK 2.0. 
+  IRCClient can be run with the usage `IRCClient <host> <port>`, where `host` is the machine the server is running from, and `port` is the port used by the server. It provides a graphical interface for the IRC server using GTK 2.0. 
