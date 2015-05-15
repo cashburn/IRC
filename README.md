@@ -8,6 +8,8 @@ When IRCServer is executed, it will accept a number of commands through network 
 
 The server can be started with the command `IRCServer <port>` where `port` is a designated available network port on the machine.  It can be ended by typing ctrl+c.
 
+The server uses the `HashTableVoid` class provided in `HashTableVoid.h` and `HashTableVoid.cc` to create a hash table of users and passwords. These user/password pairs are then stored in an unencrypted file (hopefully this will be remedied in future updates) called password.txt (I conformed to the specifications of a project at the time of writing) so that all of the users are persistent through reboots of the server.
+
 ###Commands
 
 The server can accept the following commands:
