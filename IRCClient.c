@@ -109,7 +109,7 @@ int sendCommand(char * host, int port, char * command, char * user1,
 
 void printUsage()
 {
-	printf("Usage: talk-client host port user password\n");
+	printf("Usage: IRCClient <host> <port>\n");
 	exit(1);
 }
 
@@ -129,7 +129,7 @@ int add_user() {
 	s++;
 	*s = '\0';
 	if (!strcmp(response,"OK\r\n")) {
-		printf("User %s added\n", user);
+		//printf("User %s added\n", user);
 		return 1;
 	}
 	return 0;
@@ -137,7 +137,7 @@ int add_user() {
 int login() {
 	char response[ MAX_RESPONSE ];
 	sendCommand(host, port, "LOGIN", user, password, "", response);
-	printf("%s\n", response);
+	//printf("%s\n", response);
 	char * newResponse = (char *) malloc(strlen(response)*sizeof(char));
 	char * s = newResponse;
 	char * response1 = response;
@@ -150,7 +150,7 @@ int login() {
 	s++;
 	*s = '\0';
 	if (!strcmp(newResponse,"OK\r\n")) {
-		printf("User %s exists\n", user);
+		//printf("User %s exists\n", user);
 		free(newResponse);
 		return 1;
 	}
@@ -246,7 +246,7 @@ void enterRoom(char * roomName) {
 	char response[ MAX_RESPONSE ];
 	sendCommand(host, port, "ENTER-ROOM", user, password, roomName, response);
 	if (!strcmp(response,"OK\r\n")) {
-		printf("User %s added to %s\n", user, roomName);
+		//printf("User %s added to %s\n", user, roomName);
 	}
 }
 
@@ -266,7 +266,7 @@ void leaveRoom(GtkWidget * widget) {
 	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 	sendCommand(host, port, "LEAVE-ROOM", user, password, currentRoom, response);
 	if (!strcmp(response,"OK\r\n")) {
-		printf("User %s left room %s\n", user, currentRoom);
+		//printf("User %s left room %s\n", user, currentRoom);
 	}
 	
 }
@@ -350,7 +350,7 @@ void sendMessage(GtkWidget * widget) {
 	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 	
 	if (!strcmp(response,"OK\r\n")) {
-		printf("Message sent\n", user);
+		//printf("Message sent\n", user);
 	}
 	gtk_text_buffer_delete(sendBuffer, &start, &end);
 	getMessages();
@@ -395,7 +395,7 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 		sendCommand(host, port, "CREATE-ROOM", user, password, room, response);
 	
 		if (!strcmp(response,"OK\r\n")) {
-			printf("Created room %s", room);
+			//printf("Created room %s", room);
 		}
 	}
 	listRooms();
@@ -428,7 +428,7 @@ void createAccount(GtkWidget * window) {
 		if (result == 1) {
 			user = strdup(gtk_entry_get_text(GTK_ENTRY(userName)));
 			password = strdup(gtk_entry_get_text(GTK_ENTRY(passwordEntry)));
-			printf("%s %s\n", user, password);
+			//printf("%s %s\n", user, password);
 			if (add_user()) {
 				gtk_widget_destroy(dialog);
 				gtk_widget_show(window);
@@ -476,20 +476,6 @@ void logout(GtkWidget * widget, GtkWidget * window) {
 	free(password);
 	gtk_widget_hide(window);
 	createAccount(window);
-}
-
-void printPrompt() {
-	printf("talk> ");
-	fflush(stdout);
-}
-
-void printHelp() {
-	printf("Commands:\n");
-	printf(" -who   - Gets users in room\n");
-	printf(" -users - Prints all registered users\n");
-	printf(" -help  - Prints this help\n");
-	printf(" -quit  - Leaves the room\n");
-	printf("Anything that does not start with \"-\" will be a message to the chat room\n");
 }
 
 gboolean refreshFunc(GtkWidget *widget) {
@@ -582,7 +568,7 @@ static GtkWidget * create_list()
     GtkTreeViewColumn *column;
 
     int i;
-   	printf("Create List\n");
+   	//printf("Create List\n");
     /* Create a new scrolled window, with scrollbars only if needed */
     scrolled_window = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
@@ -607,7 +593,6 @@ static GtkWidget * create_list()
   
     gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view),
                  GTK_TREE_VIEW_COLUMN (column));
-    printf("Create List Finished\n");
     return scrolled_window;
 }
 
@@ -622,7 +607,7 @@ int main(int argc, char **argv) {
 	host = argv[1];
 	sport = argv[2];
 
-	printf("\nStarting talk-client %s %s\n", host, sport);
+	printf("\nStarting IRCClient %s %s\n", host, sport);
 
 	// Convert port to number
 	sscanf(sport, "%d", &port);
